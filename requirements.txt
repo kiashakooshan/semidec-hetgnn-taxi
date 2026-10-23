@@ -1,5 +1,10 @@
 numpy>=1.24
 scikit-learn>=1.3
 pytest>=7.0
-# added in later phases (data / model):
-# pandas, pyarrow, torch, torch-geometric, networkx, osmnx, matplotlib, h5py
+# data phase:
+pandas>=2.0
+pyarrow>=14
+geopandas>=0.14
+shapely>=2.0
+pyproj>=3.6
+# model phase (later): torch, torch-geometric, networkx, osmnx, matplotlib, h5py

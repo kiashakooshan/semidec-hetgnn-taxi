@@ -1,0 +1,13 @@
+# environments / caches
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+# DATA: never commit (reproducible with scripts/)
+*.parquet
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+results/sample_*.csv

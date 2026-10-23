@@ -16,3 +16,14 @@ Rule of this project: no synthetic results. Real data, or the paper's own stated
     python -m venv .venv && .venv\Scripts\activate      (Windows)
     pip install -r requirements.txt
     pytest
+
+## Data step (current)
+1. Download `yellow_tripdata_2016-04.parquet` (and 05, 06) from the official TLC page into `data/raw/`.
+2. `pip install -r requirements.txt`
+3. `python scripts/profile_tlc.py data/raw/yellow_tripdata_2016-04.parquet`
+4. Send `results/profile_yellow_tripdata_2016-04.json` (and the small sample csv).
+
+## Phase 1 (zone-level data)
+    python scripts/build_zone_counts.py          # needs the 3 parquet files in data/raw/
+    python scripts/build_zone_centroids.py       # needs data/raw/taxi_zones.zip
+Outputs go to `data/processed/` (git-ignored; reproducible).

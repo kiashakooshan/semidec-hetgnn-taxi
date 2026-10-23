@@ -1,0 +1,140 @@
+{
+ "file": "yellow_tripdata_2016-05.parquet",
+ "rows": 11832049,
+ "rows_read": 11832049,
+ "columns": [
+  [
+   "VendorID",
+   "int64"
+  ],
+  [
+   "tpep_pickup_datetime",
+   "timestamp[us]"
+  ],
+  [
+   "tpep_dropoff_datetime",
+   "timestamp[us]"
+  ],
+  [
+   "passenger_count",
+   "int64"
+  ],
+  [
+   "trip_distance",
+   "double"
+  ],
+  [
+   "RatecodeID",
+   "int64"
+  ],
+  [
+   "store_and_fwd_flag",
+   "string"
+  ],
+  [
+   "PULocationID",
+   "int64"
+  ],
+  [
+   "DOLocationID",
+   "int64"
+  ],
+  [
+   "payment_type",
+   "int64"
+  ],
+  [
+   "fare_amount",
+   "double"
+  ],
+  [
+   "extra",
+   "double"
+  ],
+  [
+   "mta_tax",
+   "double"
+  ],
+  [
+   "tip_amount",
+   "double"
+  ],
+  [
+   "tolls_amount",
+   "double"
+  ],
+  [
+   "improvement_surcharge",
+   "double"
+  ],
+  [
+   "total_amount",
+   "double"
+  ],
+  [
+   "congestion_surcharge",
+   "null"
+  ],
+  [
+   "airport_fee",
+   "null"
+  ]
+ ],
+ "lat_cols": [],
+ "lon_cols": [],
+ "zone_id_cols": [
+  "PULocationID",
+  "DOLocationID"
+ ],
+ "id_like_cols": [],
+ "nulls": {
+  "congestion_surcharge": 11832049,
+  "airport_fee": 11832049
+ },
+ "geo": {},
+ "datetime": {
+  "tpep_pickup_datetime": {
+   "mn": "2016-05-01T00:00:00.000000",
+   "mx": "2016-05-31T23:59:59.000000"
+  },
+  "tpep_dropoff_datetime": {
+   "mn": "2016-02-25T09:45:01.000000",
+   "mx": "2016-06-01T23:50:37.000000"
+  }
+ },
+ "pickup_col": "tpep_pickup_datetime",
+ "n_days": 31,
+ "rows_per_day": {
+  "2016-05-01": 382033,
+  "2016-05-02": 357271,
+  "2016-05-03": 400206,
+  "2016-05-04": 407024,
+  "2016-05-05": 424108,
+  "2016-05-06": 436846,
+  "2016-05-07": 433170,
+  "2016-05-08": 373216,
+  "2016-05-09": 348913,
+  "2016-05-10": 376087,
+  "2016-05-11": 383331,
+  "2016-05-12": 399990,
+  "2016-05-13": 396978,
+  "2016-05-14": 435365,
+  "2016-05-15": 408406,
+  "2016-05-16": 378620,
+  "2016-05-17": 397492,
+  "2016-05-18": 381183,
+  "2016-05-19": 405850,
+  "2016-05-20": 414540,
+  "2016-05-21": 435779,
+  "2016-05-22": 369293,
+  "2016-05-23": 346799,
+  "2016-05-24": 371272,
+  "2016-05-25": 385701,
+  "2016-05-26": 388432,
+  "2016-05-27": 364741,
+  "2016-05-28": 329663,
+  "2016-05-29": 298102,
+  "2016-05-30": 261093,
+  "2016-05-31": 340545
+ }
+}
