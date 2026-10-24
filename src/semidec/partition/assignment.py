@@ -9,6 +9,7 @@ from collections import deque
 from dataclasses import dataclass
 import numpy as np
 from sklearn.cluster import KMeans
+from .clustering import kmedoids, fcm
 from ..graph.neighborhood import Adj
 
 
@@ -69,8 +70,19 @@ class PairResult:
     cross_after: int    # a-b cross edges after
 
 
+def _two_way_labels(pts: np.ndarray, method: str, seed: int) -> np.ndarray:
+    if method == "kmeans":
+        return KMeans(n_clusters=2, n_init=10, random_state=seed).fit_predict(pts)
+    if method == "kmedoids":
+        return kmedoids(pts, 2)[0]
+    if method == "fcm":
+        return fcm(pts, 2)[0]
+    raise ValueError("method must be 'kmeans', 'kmedoids' or 'fcm'")
+
+
 def adaptive_reassign_pair(adj: Adj, positions: np.ndarray, assignment: np.ndarray,
-                           a: int, b: int, hops: int = 1, seed: int = 0) -> PairResult:
+                           a: int, b: int, hops: int = 1, seed: int = 0,
+                           method: str = "kmeans") -> PairResult:
     """One (u,v) iteration of Algorithm 2: 2-means on the positions of the shared region V_b,
     then map the two clusters to CLN a / CLN b so that as few nodes as possible change owner
     (cluster identity is arbitrary in k-means).  Nodes outside V_b never move."""
@@ -80,7 +92,7 @@ def adaptive_reassign_pair(adj: Adj, positions: np.ndarray, assignment: np.ndarr
     pts = np.asarray(positions, dtype=float)[region]
     if len(region) < 2 or len(np.unique(pts, axis=0)) < 2:
         return PairResult(assignment, frozenset(region), before, before)
-    labels = KMeans(n_clusters=2, n_init=10, random_state=seed).fit_predict(pts)
+    labels = _two_way_labels(pts, method, seed)
     cur = assignment[region]
     agree_01 = int(np.sum((labels == 0) & (cur == a)) + np.sum((labels == 1) & (cur == b)))
     zero_to, one_to = (a, b) if agree_01 >= len(region) - agree_01 else (b, a)
@@ -89,12 +101,12 @@ def adaptive_reassign_pair(adj: Adj, positions: np.ndarray, assignment: np.ndarr
 
 
 def adaptive_assignment_all_pairs(adj: Adj, positions: np.ndarray, assignment: np.ndarray,
-                                  hops: int = 1, seed: int = 0) -> np.ndarray:
+                                  hops: int = 1, seed: int = 0, method: str = "kmeans") -> np.ndarray:
     """Algorithm 2 outer loops: visit every adjacent CLN pair once, in sorted order.
     (Order matters because pairs share nodes; fixed order keeps runs reproducible.)"""
     assignment = np.asarray(assignment).copy()
     pairs = sorted({tuple(sorted((int(assignment[u]), int(assignment[w]))))
                     for u, nb in adj.items() for w in nb if assignment[u] != assignment[w]})
     for a, b in pairs:
-        assignment = adaptive_reassign_pair(adj, positions, assignment, a, b, hops, seed).assignment
+        assignment = adaptive_reassign_pair(adj, positions, assignment, a, b, hops, seed, method).assignment
     return assignment

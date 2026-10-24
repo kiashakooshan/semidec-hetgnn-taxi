@@ -10,6 +10,9 @@ Rule of this project: no synthetic results. Real data, or the paper's own stated
 - `src/semidec/partition/` fixed grid + adaptive node-CLN assignment (Algorithm 2)
 - `tests/` hand-computed tests (paper's Fig. 15 graph etc.)
 - `docs/` PAPER_ISSUES, ASSUMPTIONS, DECISIONS, TA_QUESTIONS
+- `src/semidec/partition/clustering.py` k-medoids and fuzzy c-means (Fig. 11)
+- `src/semidec/inference/partitioned.py` Algorithm 1: partitioned inference, proven equal to centralized
+- `src/semidec/model/hetgnn_lstm.py` hetGNN-LSTM (Table II); `src/semidec/federated/fedavg.py` server-free FedAvg
 - Next phases: `data/` -> preprocess, `graph_builder`, `model`, `delay simulator`, `baselines`, `federated`
 
 ## Run
@@ -27,3 +30,6 @@ Rule of this project: no synthetic results. Real data, or the paper's own stated
     python scripts/build_zone_counts.py          # needs the 3 parquet files in data/raw/
     python scripts/build_zone_centroids.py       # needs data/raw/taxi_zones.zip
 Outputs go to `data/processed/` (git-ignored; reproducible).
+
+## Tests
+`pytest` -> torch-dependent tests (`test_model.py`, `test_fedavg.py`) are skipped automatically if torch / torch_geometric are missing.

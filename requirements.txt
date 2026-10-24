@@ -7,4 +7,7 @@ pyarrow>=14
 geopandas>=0.14
 shapely>=2.0
 pyproj>=3.6
-# model phase (later): torch, torch-geometric, networkx, osmnx, matplotlib, h5py
+# model phase:
+torch>=2.2
+torch-geometric>=2.5
+# later: networkx, osmnx, matplotlib, h5py
