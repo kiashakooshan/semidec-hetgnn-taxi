@@ -32,4 +32,5 @@ Rule of this project: no synthetic results. Real data, or the paper's own stated
 Outputs go to `data/processed/` (git-ignored; reproducible).
 
 ## Tests
+Install: `pip install -r requirements.txt` then `pip install -r requirements-model.txt`.
 `pytest` -> torch-dependent tests (`test_model.py`, `test_fedavg.py`) are skipped automatically if torch / torch_geometric are missing.

@@ -1,13 +1,9 @@
+# core + data phase (light)
 numpy>=1.24
 scikit-learn>=1.3
 pytest>=7.0
-# data phase:
 pandas>=2.0
 pyarrow>=14
 geopandas>=0.14
 shapely>=2.0
 pyproj>=3.6
-# model phase:
-torch>=2.2
-torch-geometric>=2.5
-# later: networkx, osmnx, matplotlib, h5py

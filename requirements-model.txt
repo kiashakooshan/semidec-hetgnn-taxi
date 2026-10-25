@@ -1,0 +1,3 @@
+# model phase (heavy): install AFTER requirements.txt
+torch>=2.2
+torch-geometric>=2.5
