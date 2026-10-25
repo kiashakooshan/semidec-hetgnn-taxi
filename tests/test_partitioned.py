@@ -62,3 +62,18 @@ def test_three_cloudlets_and_pruned_non_adjacent_edges():
     H_pr, _ = partitioned_forward(pruned, assign, X, W, b, acts)
     assert np.allclose(H_pr, centralized_forward(pruned, X, W, b, acts))           # exact on the pruned graph
     assert not np.allclose(H_pr, centralized_forward(A_REL, X, W, b, acts))        # but differs from the full graph (SC3 degradation)
+
+
+def test_sent_and_own_sizes_hand():
+    # cloudlet 1 owns {3,4,5} and must send nodes 3 (to cl.0 via cut edge 2-3) and 5 (via edge 0-5): 2 sent; same for cl.0
+    W, b = weights(1)
+    _, log = partitioned_forward(A_REL, ASSIGN, X, W, b, [ident])
+    assert log["sent_sizes"] == {0: 2, 1: 2} and log["own_sizes"] == {0: 3, 1: 3}
+    assert sum(log["sent_sizes"].values()) == sum(log["halo_sizes"].values())      # every received message is somebody's sent one
+
+def test_messages_per_layer_do_not_grow_with_depth():
+    # exact equivalence needs only the 1-hop halo per layer -> total messages are LINEAR in L (paper's complexity says L^2)
+    for L in (1, 2, 3, 4):
+        W, b = weights(L)
+        _, log = partitioned_forward(A_REL, ASSIGN, X, W, b, [relu] * (L - 1) + [ident])
+        assert log["messages_per_layer"] == [4] * L

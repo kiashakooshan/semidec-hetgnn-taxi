@@ -23,3 +23,7 @@ Status: OPEN = needs TA/paper confirmation, SET = decided and implemented.
 | A-18 | Input 216-d vector goes through the hetGNN as one vector; its output is reshaped to (P=12, 18) and fed to the LSTM; last LSTM output -> Linear -> 216-d. Paper does not say how time enters the LSTM. | OPEN |
 | A-19 | Hidden sizes not in Table II: GNN hidden = 216, LSTM hidden = 64. ReLU between GNN layers. | OPEN |
 | A-20 | Table II 'coefficient decay 0.001' = weight decay of the GNN parameter group only; LSTM/head have none. | OPEN |
+| A-21 | Centralized/semi-decentralized upload and download cost ONE ITS-G5 packet time (3.3 ms) each (all taxis transmit concurrently). The paper only says 'time for nodes to upload'. `n_serial_uplinks` makes the alternative explicit. | OPEN |
+| A-22 | The decentralized delay is reported as the Theorem-1 bounds, not an 'actual' value: the relaying protocol behind Fig. 7's 'actual' is not specified. t_r must be chosen explicitly (source 23.55 ms vs relay 18.65 ms). | OPEN |
+| A-23 | The inter-cloudlet delay t_cln is NOT given by the paper. It is an explicit argument; results are shown as a sensitivity sweep over t_cln, never as a single claimed value. Link is half-duplex, one node-message per packet. | OPEN |
+| A-24 | GNN-layer and message-passing-by-computation times are measured on the user's machine with the real model code (reference = 'cloud'); cloudlet x10 and device x100 as stated in the paper. | SET |

@@ -87,8 +87,13 @@ def partitioned_forward(A_rel: dict, assignment, X, W: list, b: list, acts: list
             new_state[c] = _layer(local_ops[c], H_cols, W[l], b[l], acts[l])
         state = new_state
         msgs.append(n_msg)
+    sent = {c: 0 for c in clouds}
+    for c in clouds:                                   # every halo node of c is sent by its owner
+        for h in halo[c]:
+            sent[int(assignment[h])] += 1
     d_out = state[clouds[0]].shape[1]
     out = np.zeros((N, d_out))
     for c in clouds:
         out[own[c]] = state[c]
-    return out, dict(messages_per_layer=msgs, halo_sizes={c: int(len(halo[c])) for c in clouds})
+    return out, dict(messages_per_layer=msgs, halo_sizes={c: int(len(halo[c])) for c in clouds},
+                     sent_sizes=sent, own_sizes={c: int(len(own[c])) for c in clouds})
