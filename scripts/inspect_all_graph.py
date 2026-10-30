@@ -8,7 +8,7 @@ import argparse, json, os, pickle, sys
 import h5py
 import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-from semidec.data.graph_inspect import describe_matrix, pearson_matrix, offdiag_corr
+from semidec.data.graph_inspect import describe_matrix, pearson_matrix, offdiag_corr, direction_check
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--graph", default="data/raw/all_graph.h5")
@@ -39,6 +39,10 @@ for name, M in sorted(mats.items()):
     print(f"\n{name}: {d}")
     rep[name] = d
     if d["square"]:
+        if "pick" in " ".join(series) and d["integer_valued"] and M.shape[0] == series.get("taxi_pick", np.zeros((1, 0))).shape[1]:
+            dc = direction_check(M, series["taxi_pick"], series["taxi_drop"])
+            rep[name]["direction_check"] = dc
+            print("   direction check (is M[i,j] = trips i->j?):", {k: round(v, 4) for k, v in dc.items()})
         for rk, R in refs.items():
             if R.shape == M.shape:
                 r = offdiag_corr(M, R)

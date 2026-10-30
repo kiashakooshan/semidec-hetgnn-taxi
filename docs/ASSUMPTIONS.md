@@ -15,10 +15,10 @@ Status: OPEN = needs TA/paper confirmation, SET = decided and implemented.
 | A-10 | P = 12 input steps: CONFIRMED by the authors' notebook (12-step blocks, cells 7-8). Q = 12 is only inferred from output dim 216 (the notebook builds input blocks only). | P: SET, Q: OPEN |
 | A-11 | TA decision: implement the paper's TEXT, not the authors' notebooks. | SET |
 | A-12 | Vicinity of a node = the 9 nodes with the largest weights in its row of `adj_mx_taxi.pkl[2]` (the node itself + 8 nearest); authors' notebook cell 12 (`(-arr).argsort()[:9]`). The weights are similarities in [0,1] with non-zero diagonal, so 'largest' = nearest. | SET (station level) |
-| A-13 | Time slot = 30 min: CCRNN text says half-hour and 4368 = 91 x 48. NOT confirmed by the authors' notebook (cell 5 computes 4368/24 as if hourly). | PROBABLE |
+| A-13 | Time slot = 30 min. EVIDENCE (user's run of compare_with_ccrnn.py): per-slot totals of the 4368-step file vs our own TLC counts correlate 0.9973 at lag 0 for both pick-ups and drop-offs, and lag 0 is the best of +-4 slots. | SET |
 | A-14 | Events outside [2016-04-01, 2016-07-01) or with zone id outside 1..n_zones are excluded and counted in the report; drop-offs earlier than their pick-up are kept and counted in the report. | SET |
 | A-15 | n_zones = 265 (TLC ids 1..265; 264/265 are 'Unknown'). CCRNN's 266 nodes are virtual stations (P14), so zone-level and CCRNN-level results are not directly comparable. | OPEN |
-| A-16 | Split (CCRNN setup, not stated by this paper): last 4 weeks = 2 weeks validation + 2 weeks test (672 steps each at 30 min); the rest is training. | OPEN |
+| A-16 | Split (CCRNN setup, not stated by this paper): last 672 steps = test (2 weeks), previous 672 = validation, rest = train; see A-28 for the sample rule. | OPEN |
 | A-17 | Aggregator f in Eq. (7) = SUM of the three relation outputs (GCNConv per relation, self-loops included by GCNConv). The paper only says 'some aggregation operator'. | OPEN |
 | A-18 | Input 216-d vector goes through the hetGNN as one vector; its output is reshaped to (P=12, 18) and fed to the LSTM; last LSTM output -> Linear -> 216-d. Paper does not say how time enters the LSTM. | OPEN |
 | A-19 | Hidden sizes not in Table II: GNN hidden = 216, LSTM hidden = 64. ReLU between GNN layers. | OPEN |
@@ -28,3 +28,6 @@ Status: OPEN = needs TA/paper confirmation, SET = decided and implemented.
 | A-23 | The inter-cloudlet delay t_cln is NOT given by the paper. It is an explicit argument; results are shown as a sensitivity sweep over t_cln, never as a single claimed value. Link is half-duplex, one node-message per packet. | OPEN |
 | A-24 | GNN-layer and message-passing-by-computation times are measured on the user's machine with the real model code (reference = 'cloud'); cloudlet x10 and device x100 as stated in the paper. | SET |
 | A-25 | Feature layout: ours is time-major, per step [demand of the 9 vicinity nodes, supply of the 9] (18 values) x 12 steps = 216, so that the model's reshape to (12, 18) (A-18) is meaningful. The authors' notebook uses node-major [9 nodes x (12 demand + 12 supply)]; reshaping that to (12, 18) would mix time and space. | SET |
+| A-26 | Station-level relations from all_graph.h5 (meaning verified in results/graph_inspect.json): A_p <- dis_tt (distance similarity); A_c <- trans_tt (observed trips between stations) as the stand-in for road connectivity; A_d <- similarity of destination profiles (rows of trans_tt). NOT the paper's definitions (road network, destination coordinates). Proposal, needs TA/user approval. | OPEN |
+| A-27 | Normalization: per-channel (pick, drop) z-score with mean/std from TRAIN steps only; metrics are computed after inverse transform, in counts. | SET |
+| A-28 | A sample (input P=12 steps, target Q=12 steps) belongs to the split containing its whole TARGET window; inputs may reach into the previous split. | SET |

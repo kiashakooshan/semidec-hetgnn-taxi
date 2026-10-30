@@ -46,3 +46,17 @@ and mirrors have no checksum from the original authors. Acceptance test = `scrip
 Track A (the paper's own data): station level on `taxi_data.h5` (266 stations, 4368 x 30 min), features per A-12/A-25,
 relations from `all_graph.h5` once their meaning is verified (P18). Track B: zone level from raw TLC (already built).
 Neither is taxi level; both are labelled as such.
+
+## Result of the acceptance test for the mirrored taxi_data.h5 (user's run)
+Shape (4368, 266) x2; per-slot totals vs our raw-TLC counts: corr 0.9973 at lag 0 (best lag 0) for pick-ups and drop-offs;
+kept share of trips 0.881 (their pick-up total 30,735,780 vs our 34,891,690), consistent with CCRNN's 8.42 x 14.45 km box;
+their pick-drop gap 3,901 vs ours 5,569. => The file is consistent with the real TLC trips. This is evidence of provenance,
+not a byte-identity proof with the Baidu original.
+## Meaning of all_graph.h5 matrices (user's run, results/graph_inspect.json)
+dis_tt: symmetric, [0,1], diag 1, 27.8% non-zero -> thresholded distance similarity (identical statistics to adj_mx_taxi.pkl[2]).
+pcc_tt: correlation with our Pearson matrix of taxi_pick = 1.0000 -> it IS the Pearson correlation of the pick-up series (has negatives, P20).
+trans_tt: integer, asymmetric, diag non-zero -> trip counts between stations (direction check pending, scripts/inspect_all_graph.py).
+## D12 Two tracks, different jobs
+Track A (stations, taxi_data.h5): forecasting accuracy, Table III, baselines.
+Track B (TLC zones, real centroids and flows): everything that needs POSITIONS - CLN assignment, boundary nodes, delay (Figs 7-11),
+because the 266 stations have no coordinates. Neither is taxi level.

@@ -1,5 +1,5 @@
 import numpy as np, pytest
-from semidec.data.graph_inspect import describe_matrix, pearson_matrix, offdiag_corr
+from semidec.data.graph_inspect import describe_matrix, pearson_matrix, offdiag_corr, direction_check
 
 M = np.array([[1, .5, 0], [.5, 1, .2], [0, .2, 1]])
 
@@ -23,3 +23,13 @@ def test_offdiag_corr_ignores_diagonal():
     assert offdiag_corr(M, flipped) == pytest.approx(-1.0)
     assert np.isnan(offdiag_corr(M, np.ones((3, 3))))
     with pytest.raises(ValueError): offdiag_corr(M, np.ones((2, 2)))
+
+
+def test_direction_check_hand():
+    T_ = np.array([[1, 2, 3], [0, 1, 0], [2, 0, 4]], float)           # trips i -> j ; rows [6,1,6], cols [3,3,7]
+    pick = np.array([[6.0, 1.0, 6.0]]); drop = np.array([[3.0, 3.0, 7.0]])   # T=1, N=3
+    d = direction_check(T_, pick, drop)
+    assert d["corr_row_pick"] == pytest.approx(1.0) and d["corr_col_drop"] == pytest.approx(1.0)
+    assert d["total"] == 13 and d["pick_total"] == 13 and d["total_over_pick"] == pytest.approx(1.0)
+    assert d["corr_row_drop"] < 0.99 and d["corr_col_pick"] < 0.99          # the other direction does NOT match
+    with pytest.raises(ValueError): direction_check(np.ones((2, 2)), pick, drop)
