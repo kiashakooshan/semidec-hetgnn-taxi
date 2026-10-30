@@ -1,4 +1,7 @@
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
-filterwarnings = ["ignore:Failing to pass a value to the .type_params. parameter:DeprecationWarning"]
+filterwarnings = [
+  "ignore:Failing to pass a value to the .type_params. parameter:DeprecationWarning",
+  "ignore:Sparse invariant checks are implicitly disabled:UserWarning",
+]

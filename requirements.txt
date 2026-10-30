@@ -7,3 +7,4 @@ pyarrow>=14
 geopandas>=0.14
 shapely>=2.0
 pyproj>=3.6
+h5py>=3.8

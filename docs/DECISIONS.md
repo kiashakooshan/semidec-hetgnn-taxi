@@ -29,3 +29,20 @@ Laptop has Intel Iris Xe (no CUDA). Delay simulation, partitioning, preprocessin
   (b) find another source that really has coordinates for Apr-Jun 2016 (availability NOT verified);
   (c) a different dataset with taxi ids (then it is no longer the paper's dataset).
   Do not invent positions inside zones (that would be synthetic data).
+
+## D9 The 'Chinese' (Baidu) files
+CCRNN publishes `taxi_data.h5` / graph files on Baidu. According to both repos' code they hold AGGREGATED counts
+(taxi_pick, taxi_drop for 266 virtual stations) and adjacency matrices: no coordinates, no taxi ids. They do not solve the
+taxi-level problem (D8). Possible use: validate our pipeline and the CCRNN/DCRNN/Graph WaveNet baselines against the
+published numbers. Action: list the files/sizes inside the Baidu share before deciding.
+Another route for D8: the paper says its code AND datasets are on GitHub, but the repo contains no data -> ask the authors.
+
+## D10 Third-party mirrors of the CCRNN files (reported by an external assistant, not yet verified here)
+Claimed sources: taxi_data.h5 / bike_data.h5 from the ESG repo (Google Drive), all_graph.h5 from Hugging Face
+`bjdwh/FlashST-DATA`, adj_mx_*.pkl from `Essaim/CGCDemandPrediction`. We did not receive the files in this project,
+and mirrors have no checksum from the original authors. Acceptance test = `scripts/compare_with_ccrnn.py`
+(per-slot totals vs our own TLC counts) + `scripts/inspect_all_graph.py`. Only after both pass is the file used.
+## D11 Two tracks (proposal)
+Track A (the paper's own data): station level on `taxi_data.h5` (266 stations, 4368 x 30 min), features per A-12/A-25,
+relations from `all_graph.h5` once their meaning is verified (P18). Track B: zone level from raw TLC (already built).
+Neither is taxi level; both are labelled as such.
