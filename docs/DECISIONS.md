@@ -66,3 +66,10 @@ Track A now has: series (taxi_data.h5), vicinity/features (stations.py), three r
 and (pending validation, A-29) positions. Everything position-dependent (CLN assignment, boundary nodes, delay Figs 7-11)
 can therefore run at STATION level. Still impossible: a per-taxi graph (no taxi ids/positions anywhere in the public data).
 See docs/ROADMAP.md for the remaining steps.
+
+## D14 What we decided about the data (summary for the report)
+1. Official TLC Apr-Jun 2016 has zone ids only (no coordinates, no taxi id) -> a per-taxi graph is impossible with public data.
+2. The authors' own code used a processed file with 266 'virtual stations'; we obtained it from public mirrors and checked it against raw TLC (corr 0.9973, 88.1% of trips inside CCRNN's box).
+3. Meaning of the three matrices established from the data (dis = distance kernel, pcc = Pearson of pick-ups, trans = trip counts [destination, origin]).
+4. Station coordinates recovered and validated (A-29). Track A (stations) is the main branch; Track B (TLC zones) is kept as a cross-check.
+5. Honest label everywhere: results are STATION level, not taxi level.

@@ -41,6 +41,13 @@
   "share_rank_le10": 0.7894736842105263,
   "chance_median_rank": 133.0
  },
+ "geography_misranked": {
+  "n": 56,
+  "median_km_to_best_zone": 3.082232106445309,
+  "share_best_zone_within_1_5km": 0.25,
+  "share_best_zone_within_3km": 0.48214285714285715
+ },
+ "external_zone_map_agreement": 1.0,
  "stations_with_neighbour_within_100m": 2,
  "stations_with_neighbour_within_200m": 159,
  "stations_with_neighbour_within_500m": 256

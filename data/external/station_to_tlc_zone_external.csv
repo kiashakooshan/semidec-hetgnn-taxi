@@ -1,0 +1,267 @@
+station_id,lat,lon,LocationID,zone,borough
+1,40.685841,-73.977285,97,Fort Greene,Brooklyn
+2,40.689476,-73.992487,52,Cobble Hill,Brooklyn
+3,40.701586,-74.012658,88,Financial District South,Manhattan
+4,40.702348,-73.986857,66,DUMBO/Vinegar Hill,Brooklyn
+5,40.705375,-74.017171,13,Battery Park City,Manhattan
+6,40.707312,-74.004249,87,Financial District North,Manhattan
+7,40.711137,-74.016089,13,Battery Park City,Manhattan
+8,40.711265,-74.014987,13,Battery Park City,Manhattan
+9,40.714791,-74.013885,13,Battery Park City,Manhattan
+10,40.714913,-73.951733,80,East Williamsburg,Brooklyn
+11,40.715063,-74.016084,13,Battery Park City,Manhattan
+12,40.717004,-73.956538,255,Williamsburg (North Side),Brooklyn
+13,40.717919,-73.957635,255,Williamsburg (North Side),Brooklyn
+14,40.718637,-73.98913,148,Lower East Side,Manhattan
+15,40.718899,-73.990327,148,Lower East Side,Manhattan
+16,40.719061,-74.005059,231,TriBeCa/Civic Center,Manhattan
+17,40.719989,-74.00858,231,TriBeCa/Civic Center,Manhattan
+18,40.719937,-73.987523,148,Lower East Side,Manhattan
+19,40.720909,-74.010089,231,TriBeCa/Civic Center,Manhattan
+20,40.720861,-73.997637,144,Little Italy/NoLiTa,Manhattan
+21,40.720984,-73.99363,148,Lower East Side,Manhattan
+22,40.721502,-73.989024,148,Lower East Side,Manhattan
+23,40.721493,-73.983629,4,Alphabet City,Manhattan
+24,40.721832,-73.957918,255,Williamsburg (North Side),Brooklyn
+25,40.721924,-74.004265,211,SoHo,Manhattan
+26,40.722163,-73.997138,144,Little Italy/NoLiTa,Manhattan
+27,40.722289,-73.991727,148,Lower East Side,Manhattan
+28,40.722411,-73.987326,148,Lower East Side,Manhattan
+29,40.72284,-74.005072,211,SoHo,Manhattan
+30,40.723325,-73.988323,79,East Village,Manhattan
+31,40.723601,-73.996541,144,Little Italy/NoLiTa,Manhattan
+32,40.725293,-73.995138,114,Greenwich Village South,Manhattan
+33,40.725574,-74.00558,125,Hudson Sq,Manhattan
+34,40.725571,-74.003972,211,SoHo,Manhattan
+35,40.725544,-73.983821,79,East Village,Manhattan
+36,40.726072,-73.991832,79,East Village,Manhattan
+37,40.726477,-74.002267,211,SoHo,Manhattan
+38,40.726458,-73.986023,79,East Village,Manhattan
+39,40.726853,-73.988928,79,East Village,Manhattan
+40,40.727003,-74.003372,125,Hudson Sq,Manhattan
+41,40.727256,-74.00046,114,Greenwich Village South,Manhattan
+42,40.727377,-73.993537,114,Greenwich Village South,Manhattan
+43,40.72763,-73.985125,79,East Village,Manhattan
+44,40.727889,-73.982116,79,East Village,Manhattan
+45,40.728701,-74.005283,249,West Village,Manhattan
+46,40.728806,-73.98432,79,East Village,Manhattan
+47,40.729329,-73.987128,79,East Village,Manhattan
+48,40.729478,-74.00227,114,Greenwich Village South,Manhattan
+49,40.729453,-73.978218,79,East Village,Manhattan
+50,40.730114,-73.989335,79,East Village,Manhattan
+51,40.730109,-73.98342,79,East Village,Manhattan
+52,40.730397,-74.006887,158,Meatpacking/West Village West,Manhattan
+53,40.730515,-74.000065,114,Greenwich Village South,Manhattan
+54,40.730507,-73.992543,113,Greenwich Village North,Manhattan
+55,40.730499,-73.980417,224,Stuy Town/Peter Cooper Village,Manhattan
+56,40.730909,-74.001467,114,Greenwich Village South,Manhattan
+57,40.731153,-73.982616,79,East Village,Manhattan
+58,40.731415,-73.988532,79,East Village,Manhattan
+59,40.731806,-73.985422,79,East Village,Manhattan
+60,40.732219,-74.007791,158,Meatpacking/West Village West,Manhattan
+61,40.732457,-73.987731,79,East Village,Manhattan
+62,40.733255,-74.006385,158,Meatpacking/West Village West,Manhattan
+63,40.733894,-74.002676,249,West Village,Manhattan
+64,40.73388,-73.980615,107,Gramercy,Manhattan
+65,40.734145,-73.989839,79,East Village,Manhattan
+66,40.73428,-73.999071,113,Greenwich Village North,Manhattan
+67,40.734401,-73.983424,107,Gramercy,Manhattan
+68,40.734669,-73.990842,113,Greenwich Village North,Manhattan
+69,40.735311,-73.985631,107,Gramercy,Manhattan
+70,40.735446,-73.989743,107,Gramercy,Manhattan
+71,40.735718,-74.005987,158,Meatpacking/West Village West,Manhattan
+72,40.736623,-73.988843,107,Gramercy,Manhattan
+73,40.737149,-73.996967,113,Greenwich Village North,Manhattan
+74,40.737282,-74.000578,249,West Village,Manhattan
+75,40.737279,-73.992755,234,Union Sq,Manhattan
+76,40.737397,-73.984129,107,Gramercy,Manhattan
+77,40.738062,-74.004285,249,West Village,Manhattan
+78,40.738199,-74.009387,158,Meatpacking/West Village West,Manhattan
+79,40.738185,-73.98784,234,Union Sq,Manhattan
+80,40.738452,-73.999877,249,West Village,Manhattan
+81,40.738586,-73.995965,90,Flatiron,Manhattan
+82,40.738577,-73.991655,234,Union Sq,Manhattan
+83,40.738571,-73.985434,107,Gramercy,Manhattan
+84,40.738699,-73.983228,107,Gramercy,Manhattan
+85,40.739499,-74.008088,158,Meatpacking/West Village West,Manhattan
+86,40.739484,-73.986939,234,Union Sq,Manhattan
+87,40.739629,-74.002584,249,West Village,Manhattan
+88,40.739594,-73.976408,137,Kips Bay,Manhattan
+89,40.739748,-73.990852,234,Union Sq,Manhattan
+90,40.740009,-73.994966,90,Flatiron,Manhattan
+91,40.739996,-73.982227,137,Kips Bay,Manhattan
+92,40.740151,-74.005886,158,Meatpacking/West Village West,Manhattan
+93,40.740534,-73.998174,90,Flatiron,Manhattan
+94,40.740932,-74.007584,158,Meatpacking/West Village West,Manhattan
+95,40.741171,-73.98132,137,Kips Bay,Manhattan
+96,40.741169,-73.978514,137,Kips Bay,Manhattan
+97,40.741705,-73.993664,234,Union Sq,Manhattan
+98,40.741697,-73.989448,234,Union Sq,Manhattan
+99,40.741806,-73.974811,137,Kips Bay,Manhattan
+100,40.741975,-74.004685,68,East Chelsea,Manhattan
+101,40.742089,-73.985035,234,Union Sq,Manhattan
+102,40.742088,-73.982826,107,Gramercy,Manhattan
+103,40.742207,-73.977818,137,Kips Bay,Manhattan
+104,40.742357,-73.996974,90,Flatiron,Manhattan
+105,40.742469,-73.980423,137,Kips Bay,Manhattan
+106,40.742877,-74.000182,90,Flatiron,Manhattan
+107,40.743017,-74.007585,246,West Chelsea/Hudson Yards,Manhattan
+108,40.743914,-73.987844,234,Union Sq,Manhattan
+109,40.743905,-73.983732,164,Midtown South,Manhattan
+110,40.743883,-73.973313,233,UN/Turtle Bay South,Manhattan
+111,40.744184,-74.006689,68,East Chelsea,Manhattan
+112,40.744574,-73.999079,68,East Chelsea,Manhattan
+113,40.744551,-73.981027,170,Murray Hill,Manhattan
+114,40.744698,-73.991556,90,Flatiron,Manhattan
+115,40.744671,-73.976016,137,Kips Bay,Manhattan
+116,40.744829,-73.995168,90,Flatiron,Manhattan
+117,40.744942,-73.978622,137,Kips Bay,Manhattan
+118,40.745358,-74.002286,68,East Chelsea,Manhattan
+119,40.745751,-74.005585,246,West Chelsea/Hudson Yards,Manhattan
+120,40.745868,-73.994363,90,Flatiron,Manhattan
+121,40.74666,-74.001585,68,East Chelsea,Manhattan
+122,40.747048,-73.997173,90,Flatiron,Manhattan
+123,40.747031,-73.989849,186,Penn Station/Madison Sq West,Manhattan
+124,40.747024,-73.98153,164,Midtown South,Manhattan
+125,40.747837,-74.004088,246,West Chelsea/Hudson Yards,Manhattan
+126,40.748195,-73.984837,164,Midtown South,Manhattan
+127,40.748462,-73.988848,186,Penn Station/Madison Sq West,Manhattan
+128,40.748443,-73.978222,170,Murray Hill,Manhattan
+129,40.748748,-74.008283,246,West Chelsea/Hudson Yards,Manhattan
+130,40.748962,-73.975721,233,UN/Turtle Bay South,Manhattan
+131,40.749632,-73.987848,164,Midtown South,Manhattan
+132,40.749902,-73.993565,186,Penn Station/Madison Sq West,Manhattan
+133,40.75003,-73.991459,186,Penn Station/Madison Sq West,Manhattan
+134,40.750183,-74.002481,246,West Chelsea/Hudson Yards,Manhattan
+135,40.750965,-74.005682,246,West Chelsea/Hudson Yards,Manhattan
+136,40.751207,-73.994171,186,Penn Station/Madison Sq West,Manhattan
+137,40.751481,-73.945567,145,Long Island City/Hunters Point,Queens
+138,40.751698,-73.976626,162,Midtown East,Manhattan
+139,40.752264,-74.004584,246,West Chelsea/Hudson Yards,Manhattan
+140,40.752221,-73.975323,162,Midtown East,Manhattan
+141,40.752353,-73.978125,162,Midtown East,Manhattan
+142,40.752507,-73.993267,68,East Chelsea,Manhattan
+143,40.753291,-73.996476,68,East Chelsea,Manhattan
+144,40.75379,-73.977628,161,Midtown Center,Manhattan
+145,40.754299,-73.968921,229,Sutton Place/Turtle Bay North,Manhattan
+146,40.754968,-73.984143,230,Times Sq/Theatre District,Manhattan
+147,40.755203,-73.965122,229,Sutton Place/Turtle Bay North,Manhattan
+148,40.755338,-73.968121,229,Sutton Place/Turtle Bay North,Manhattan
+149,40.756148,-73.99066,48,Clinton East,Manhattan
+150,40.756563,-74.001678,246,West Chelsea/Hudson Yards,Manhattan
+151,40.756685,-73.997776,246,West Chelsea/Hudson Yards,Manhattan
+152,40.757602,-74.000875,246,West Chelsea/Hudson Yards,Manhattan
+153,40.758886,-73.988659,48,Clinton East,Manhattan
+154,40.759291,-73.995772,246,West Chelsea/Hudson Yards,Manhattan
+155,40.759283,-73.992069,48,Clinton East,Manhattan
+156,40.759502,-73.965129,229,Sutton Place/Turtle Bay North,Manhattan
+157,40.760605,-74.002864,246,West Chelsea/Hudson Yards,Manhattan
+158,40.760567,-73.975729,161,Midtown Center,Manhattan
+159,40.760729,-73.99857,246,West Chelsea/Hudson Yards,Manhattan
+160,40.760664,-73.96113,140,Lenox Hill East,Manhattan
+161,40.761102,-73.990666,48,Clinton East,Manhattan
+162,40.761092,-73.986957,230,Times Sq/Theatre District,Manhattan
+163,40.761315,-73.963827,141,Lenox Hill West,Manhattan
+164,40.761994,-73.978933,230,Times Sq/Theatre District,Manhattan
+165,40.761957,-73.960225,140,Lenox Hill East,Manhattan
+166,40.762231,-73.966025,141,Lenox Hill West,Manhattan
+167,40.762795,-73.993273,50,Clinton West,Manhattan
+168,40.762761,-73.96783,237,Upper East Side South,Manhattan
+169,40.763774,-73.958921,140,Lenox Hill East,Manhattan
+170,40.763944,-73.973233,163,Midtown North,Manhattan
+171,40.764108,-73.998568,50,Clinton West,Manhattan
+172,40.764028,-73.955816,140,Lenox Hill East,Manhattan
+173,40.764023,-73.95422,140,Lenox Hill East,Manhattan
+174,40.764217,-73.988468,48,Clinton East,Manhattan
+175,40.764338,-73.977034,163,Midtown North,Manhattan
+176,40.76449,-73.995778,50,Clinton West,Manhattan
+177,40.764459,-73.96883,237,Upper East Side South,Manhattan
+178,40.764615,-73.991876,50,Clinton West,Manhattan
+179,40.764655,-73.936861,193,Queensbridge/Ravenswood,Queens
+180,40.764857,-73.970432,237,Upper East Side South,Manhattan
+181,40.76485,-73.966229,237,Upper East Side South,Manhattan
+182,40.765251,-73.975234,43,Central Park,Manhattan
+183,40.76525,-73.972333,43,Central Park,Manhattan
+184,40.765454,-73.954814,140,Lenox Hill East,Manhattan
+185,40.765757,-73.963527,237,Upper East Side South,Manhattan
+186,40.765918,-73.990975,50,Clinton West,Manhattan
+187,40.765904,-73.976436,43,Central Park,Manhattan
+188,40.766567,-73.986862,48,Clinton East,Manhattan
+189,40.766559,-73.978341,163,Midtown North,Manhattan
+190,40.766903,-73.956613,140,Lenox Hill East,Manhattan
+191,40.767091,-73.990074,50,Clinton West,Manhattan
+192,40.767023,-73.953613,140,Lenox Hill East,Manhattan
+193,40.767712,-73.962028,141,Lenox Hill West,Manhattan
+194,40.767969,-73.963923,237,Upper East Side South,Manhattan
+195,40.768387,-73.984766,48,Clinton East,Manhattan
+196,40.768384,-73.982361,142,Lincoln Square East,Manhattan
+197,40.76834,-73.955617,141,Lenox Hill West,Manhattan
+198,40.768649,-73.987367,48,Clinton East,Manhattan
+199,40.769035,-73.981257,142,Lincoln Square East,Manhattan
+200,40.769013,-73.961123,141,Lenox Hill West,Manhattan
+201,40.769652,-73.954614,140,Lenox Hill East,Manhattan
+202,40.769809,-73.984472,142,Lincoln Square East,Manhattan
+203,40.769903,-73.95141,140,Lenox Hill East,Manhattan
+204,40.771226,-73.959524,141,Lenox Hill West,Manhattan
+205,40.771633,-73.982671,142,Lincoln Square East,Manhattan
+206,40.771742,-73.953114,140,Lenox Hill East,Manhattan
+207,40.772139,-73.955915,141,Lenox Hill West,Manhattan
+208,40.772128,-73.949816,262,Yorkville East,Manhattan
+209,40.772404,-73.967128,43,Central Park,Manhattan
+210,40.772539,-73.977345,43,Central Park,Manhattan
+211,40.772521,-73.946527,262,Yorkville East,Manhattan
+212,40.772926,-73.958316,237,Upper East Side South,Manhattan
+213,40.773058,-73.964523,237,Upper East Side South,Manhattan
+214,40.773189,-73.978253,142,Lincoln Square East,Manhattan
+215,40.773581,-73.959926,237,Upper East Side South,Manhattan
+216,40.773566,-73.951808,263,Yorkville West,Manhattan
+217,40.773574,-73.945831,262,Yorkville East,Manhattan
+218,40.773979,-73.982166,142,Lincoln Square East,Manhattan
+219,40.773965,-73.948625,262,Yorkville East,Manhattan
+220,40.774233,-73.961525,237,Upper East Side South,Manhattan
+221,40.774369,-73.981061,142,Lincoln Square East,Manhattan
+222,40.774365,-73.963626,237,Upper East Side South,Manhattan
+223,40.774879,-73.950818,262,Yorkville East,Manhattan
+224,40.77515,-73.947733,262,Yorkville East,Manhattan
+225,40.775272,-73.953713,263,Yorkville West,Manhattan
+226,40.776188,-73.976141,142,Lincoln Square East,Manhattan
+227,40.776191,-73.95593,236,Upper East Side North,Manhattan
+228,40.776715,-73.952624,263,Yorkville West,Manhattan
+229,40.777365,-73.978949,142,Lincoln Square East,Manhattan
+230,40.77777,-73.951932,263,Yorkville West,Manhattan
+231,40.778162,-73.954534,236,Upper East Side North,Manhattan
+232,40.778672,-73.982165,143,Lincoln Square West,Manhattan
+233,40.779194,-73.962238,43,Central Park,Manhattan
+234,40.77944,-73.973736,239,Upper West Side South,Manhattan
+235,40.779445,-73.959844,236,Upper East Side North,Manhattan
+236,40.77958,-73.953454,236,Upper East Side North,Manhattan
+237,40.77971,-73.955744,236,Upper East Side North,Manhattan
+238,40.779983,-73.950258,263,Yorkville West,Manhattan
+239,40.779993,-73.947165,263,Yorkville West,Manhattan
+240,40.780621,-73.976548,239,Upper West Side South,Manhattan
+241,40.780753,-73.958943,236,Upper East Side North,Manhattan
+242,40.780888,-73.981461,239,Upper West Side South,Manhattan
+243,40.780876,-73.972739,239,Upper West Side South,Manhattan
+244,40.781148,-73.979858,239,Upper West Side South,Manhattan
+245,40.781911,-73.975639,239,Upper West Side South,Manhattan
+246,40.782169,-73.971936,239,Upper West Side South,Manhattan
+247,40.78309,-73.978453,239,Upper West Side South,Manhattan
+248,40.783211,-73.974636,239,Upper West Side South,Manhattan
+249,40.783234,-73.952968,236,Upper East Side North,Manhattan
+250,40.783353,-73.959154,43,Central Park,Manhattan
+251,40.784387,-73.977446,239,Upper West Side South,Manhattan
+252,40.784516,-73.973741,239,Upper West Side South,Manhattan
+253,40.784655,-73.956159,236,Upper East Side North,Manhattan
+254,40.784666,-73.949669,263,Yorkville West,Manhattan
+255,40.785559,-73.96955,238,Upper West Side North,Manhattan
+256,40.785692,-73.976436,239,Upper West Side South,Manhattan
+257,40.786417,-73.942538,75,East Harlem South,Manhattan
+258,40.786474,-73.972348,239,Upper West Side South,Manhattan
+259,40.788454,-73.953385,75,East Harlem South,Manhattan
+260,40.789367,-73.954787,43,Central Park,Manhattan
+261,40.789744,-73.966277,238,Upper West Side North,Manhattan
+262,40.789883,-73.952385,75,East Harlem South,Manhattan
+263,40.790928,-73.95369,43,Central Park,Manhattan
+264,40.792351,-73.96439,238,Upper West Side North,Manhattan
+265,40.793918,-73.966899,151,Manhattan Valley,Manhattan
+266,40.794958,-73.966201,151,Manhattan Valley,Manhattan

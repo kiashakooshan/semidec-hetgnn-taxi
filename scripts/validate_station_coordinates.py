@@ -12,7 +12,8 @@ import argparse, json, os, sys
 import h5py
 import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-from semidec.data.station_coords import load_taxi_coords, pairwise_km, gaussian_kernel, compare_kernel, own_zone_rank
+from semidec.data.station_coords import (load_taxi_coords, pairwise_km, gaussian_kernel, compare_kernel,
+                                         zone_correlations, haversine_km)
 import pandas as pd
 
 ap = argparse.ArgumentParser()
@@ -22,9 +23,12 @@ ap.add_argument("--graph", default="data/raw/all_graph.h5")
 ap.add_argument("--data", default="data/raw/taxi_data.h5")
 ap.add_argument("--zones", default="data/raw/taxi_zones.zip")
 ap.add_argument("--counts", default="data/processed/zone_counts_30min.npz")
+ap.add_argument("--centroids", default="data/processed/zone_centroids.csv")
+ap.add_argument("--external-map", default="data/external/station_to_tlc_zone_external.csv")
+ap.add_argument("--n-stations", type=int, default=266)
 a = ap.parse_args()
 
-taxi = load_taxi_coords(a.taxi)
+taxi = load_taxi_coords(a.taxi, n_expected=a.n_stations)
 bike = pd.read_csv(a.bike).sort_values("h5_column")
 assert (bike.h5_column.values == np.arange(len(bike))).all(), "bike h5_column must be 0..N-1"
 rep = {}
@@ -50,12 +54,34 @@ if os.path.exists(a.zones) and os.path.exists(a.counts) and os.path.exists(a.dat
     with h5py.File(a.data, "r") as hf:
         st = hf["taxi_pick"][:].astype(float)
     zones_pick = np.load(a.counts)["pickup"].astype(float)
-    ranks = own_zone_rank(st, zones_pick, zcol)
+    R = zone_correlations(st, zones_pick)
+    ranks = np.array([0 if zcol[i] < 0 else 1 + int((R[i] > R[i, zcol[i]]).sum()) for i in range(len(taxi))])
     rr = ranks[ranks > 0]
     rep["geography"] = dict(inside_a_zone=float(inside.mean()), n_scored=int(len(rr)), median_rank=float(np.median(rr)),
                             share_rank1=float((rr == 1).mean()), share_rank_le3=float((rr <= 3).mean()),
                             share_rank_le10=float((rr <= 10).mean()), chance_median_rank=float((zones_pick.shape[1] + 1) / 2))
     print("\n[geography]", rep["geography"])
+    best = R.argmax(1)
+    table = pd.DataFrame(dict(station_id=taxi.station_id, our_LocationID=zcol + 1, own_zone_corr=[R[i, zcol[i]] if zcol[i] >= 0 else np.nan for i in range(len(taxi))],
+                              own_zone_rank=ranks, best_LocationID=best + 1, best_corr=R.max(1)))
+    if os.path.exists(a.centroids):
+        c = pd.read_csv(a.centroids).set_index("zone_id")
+        ok = table.best_LocationID.isin(c.index)
+        table["km_to_best_zone_centroid"] = np.nan
+        table.loc[ok, "km_to_best_zone_centroid"] = haversine_km(taxi.lat[ok].values, taxi.lon[ok].values,
+                                                                   c.loc[table.best_LocationID[ok], "lat"].values, c.loc[table.best_LocationID[ok], "lon"].values)
+        weak = table[table.own_zone_rank > 10]
+        rep["geography_misranked"] = dict(n=int(len(weak)), median_km_to_best_zone=float(weak.km_to_best_zone_centroid.median()),
+                                          share_best_zone_within_1_5km=float((weak.km_to_best_zone_centroid <= 1.5).mean()),
+                                          share_best_zone_within_3km=float((weak.km_to_best_zone_centroid <= 3.0).mean()))
+        print("[geography] stations whose own zone ranks > 10:", rep["geography_misranked"])
+    if os.path.exists(a.external_map):
+        ext = pd.read_csv(a.external_map).set_index("station_id")
+        agree = (table.set_index("station_id").our_LocationID == ext.LocationID.reindex(table.station_id).values)
+        rep["external_zone_map_agreement"] = float(agree.mean())
+        print("[geography] agreement of OUR point-in-polygon zones with the external mapping:", rep["external_zone_map_agreement"])
+    os.makedirs("results", exist_ok=True)
+    table.to_csv("results/station_zone_check.csv", index=False)
     bad = taxi.station_id.values[(ranks > 10) | (ranks == 0)]
     print("stations to inspect (outside zones or own-zone rank > 10):", bad.tolist())
 else:

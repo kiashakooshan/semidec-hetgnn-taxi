@@ -1,4 +1,4 @@
-> EXTERNAL DOCUMENT written by a third-party assistant. Its claims are NOT accepted until `scripts/validate_station_coordinates.py` passes (see docs/ASSUMPTIONS.md A-29).
+> EXTERNAL DOCUMENT (v2) written by a third-party assistant. Independent checks and corrections: docs/ASSUMPTIONS.md A-29, docs/PAPER_ISSUES.md P24.
 
 # Recovered coordinates for the 266 CCRNN taxi stations (and 250 Citi Bike stations)
 
@@ -52,6 +52,36 @@ Citi Bike stations identified by exact time-series matching.
 Geographically the cloud is Manhattan below ~96th St + Downtown Brooklyn + a sliver of
 Long Island City, which matches the CCRNN paper's description (Manhattan + part of
 Brooklyn, 8.42 x 14.45 km).
+
+## Addendum v2 (2026-10-31): reproduction script + independent geographic validation
+
+Responding to the audit request (reproducible code, not just output files):
+
+1. `recover_station_coordinates.py` is the full pipeline as a single auditable script.
+   Re-running it reproduces the delivered CSV with **0.00 m** difference (deterministic
+   seeds). `--match-bike` regenerates the bike mapping from raw Citi Bike CSVs.
+2. **Correction on sigma:** the exact figure is sigma = 0.996 +- 0.002 (the earlier
+   "1.000" was 2-decimal rounding). Impact is a < 0.5% scale factor, well inside the
+   5 m trilateration residuals. The script prints it unrounded.
+3. **Clarification on circularity:** the taxi positions were solved from `dis_tb`
+   (real bike anchor coordinates) only — `dis_tt` was never a fit target for the 265
+   well-constrained stations. The `dis_tt` check (RMS 4 m) is a held-out validation.
+   Only the weak stations used dis_tt constraints in refinement: station id 1
+   (1 anchor, mirror ambiguity ~130 m — see Caveats) and, for robustness, the
+   3-anchor stations ids 179 and 257 (3 anchors already give a unique solution,
+   so these are not ambiguous; they are listed here only because they have the
+   fewest constraints after station 1).
+4. **Independent geographic test (does not use dis_* at all):** all 266 station
+   coordinates were point-in-polygon tested against the official TLC taxi zone
+   shapefile (`taxi_zones.zip`, State Plane ftUS, EPSG:2263). Result:
+   **266/266 fall inside a real TLC zone on land** — 257 Manhattan, 7 Brooklyn,
+   2 Queens; top zones are East Village, West Chelsea/Hudson Yards, Upper West Side
+   South, Lenox Hill East — exactly the high-demand neighborhoods where taxi pickup
+   cluster centroids should land. Mapping delivered as `station_to_tlc_zone.csv`.
+5. **P23 confirmed:** with these coordinates, stations having a nearest neighbor
+   within 100 m / 200 m / 500 m = **2 / 159 / 256** (matches the independent
+   computation in the audit). The SC2 100 m radius indeed yields a nearly edge-less
+   station graph; this should be reported as a deviation from the paper.
 
 ## Caveats
 - Station 0 (CCRNN id 1, Downtown Brooklyn, near BAM) has only 2 usable constraints

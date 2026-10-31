@@ -1,6 +1,6 @@
 import numpy as np, pandas as pd, pytest
 from semidec.data.station_coords import (load_taxi_coords, pairwise_km, gaussian_kernel, compare_kernel,
-                                         own_zone_rank, TAXI_COLS)
+                                         own_zone_rank, TAXI_COLS, haversine_km, zone_correlations)
 
 def test_pairwise_km_one_degree_of_latitude():
     D = pairwise_km([40.0, 41.0], [-74.0, -74.0])
@@ -54,3 +54,15 @@ def test_rectangular_kernel_has_no_forced_diagonal():
     assert W[1, 1] == pytest.approx(np.exp(-0.25)) and W[1, 2] == pytest.approx(np.exp(-2.25))
     r = compare_kernel(W, W)
     assert r["nnz_common"] == 4 and r["only_pred"] == 0 and r["only_true"] == 0
+
+
+def test_haversine_elementwise_matches_matrix_version():
+    assert haversine_km(40.0, -74.0, 41.0, -74.0) == pytest.approx(111.195, abs=0.01)
+    D = pairwise_km([40.0, 40.5], [-74.0, -73.9])
+    assert haversine_km(40.0, -74.0, 40.5, -73.9) == pytest.approx(D[0, 1])
+
+def test_zone_correlations_hand():
+    t = np.arange(10, dtype=float)
+    R = zone_correlations(np.stack([2 * t + 1, -t], 1), np.stack([t, np.sin(t), -t], 1))
+    assert R.shape == (2, 3) and R[0, 0] == pytest.approx(1.0) and R[0, 2] == pytest.approx(-1.0) and R[1, 2] == pytest.approx(1.0)
+    assert (np.abs(R) <= 1 + 1e-12).all()

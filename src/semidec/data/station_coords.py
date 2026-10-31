@@ -63,18 +63,29 @@ def compare_kernel(W_pred: np.ndarray, W_true: np.ndarray) -> dict:
                 rowsum_max_abs_diff=float(np.abs(rs_p - rs_t).max()))
 
 
+def haversine_km(lat1, lon1, lat2, lon2):
+    """Element-wise great-circle distance in km."""
+    p1, p2 = np.radians(np.asarray(lat1, float)), np.radians(np.asarray(lat2, float))
+    dl = np.radians(np.asarray(lon2, float) - np.asarray(lon1, float))
+    a = np.sin((p2 - p1) / 2) ** 2 + np.cos(p1) * np.cos(p2) * np.sin(dl / 2) ** 2
+    return 2 * EARTH_R_KM * np.arcsin(np.sqrt(a))
+
+
+def zone_correlations(station_series: np.ndarray, zone_series: np.ndarray) -> np.ndarray:
+    """Pearson correlation [S, Z] between every station series [T,S] and every zone series [T,Z] (constant -> 0)."""
+    x = np.asarray(station_series, float)
+    z = np.asarray(zone_series, float)
+    xs = (x - x.mean(0)) / np.where(x.std(0) == 0, 1.0, x.std(0))
+    zs = (z - z.mean(0)) / np.where(z.std(0) == 0, 1.0, z.std(0))
+    return xs.T @ zs / x.shape[0]
+
+
 def own_zone_rank(station_series: np.ndarray, zone_series: np.ndarray, zone_col_of_station: np.ndarray) -> np.ndarray:
     """For each station: rank (1 = best) of the zone it lies in, among all zones, by Pearson correlation of the
-    time series.  station_series [T,S], zone_series [T,Z], zone_col_of_station [S] (-1 = not inside any zone -> rank 0)."""
-    S = station_series.shape[1]
-    ranks = np.zeros(S, int)
-    zc = (zone_series - zone_series.mean(0)) / np.where(zone_series.std(0) == 0, 1, zone_series.std(0))
-    for s in range(S):
-        z = zone_col_of_station[s]
-        if z < 0:
-            continue
-        x = station_series[:, s]
-        x = (x - x.mean()) / (x.std() if x.std() else 1.0)
-        r = zc.T @ x / len(x)
-        ranks[s] = 1 + int((r > r[z]).sum())
+    time series.  zone_col_of_station [S] (-1 = not inside any zone -> rank 0)."""
+    R = zone_correlations(station_series, zone_series)
+    ranks = np.zeros(R.shape[0], int)
+    for s, z in enumerate(zone_col_of_station):
+        if z >= 0:
+            ranks[s] = 1 + int((R[s] > R[s, z]).sum())
     return ranks
