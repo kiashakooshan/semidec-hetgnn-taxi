@@ -60,3 +60,9 @@ trans_tt: integer, asymmetric, diag non-zero -> trip counts between stations (di
 Track A (stations, taxi_data.h5): forecasting accuracy, Table III, baselines.
 Track B (TLC zones, real centroids and flows): everything that needs POSITIONS - CLN assignment, boundary nodes, delay (Figs 7-11),
 because the 266 stations have no coordinates. Neither is taxi level.
+
+## D13 Status after recovering station coordinates
+Track A now has: series (taxi_data.h5), vicinity/features (stations.py), three relation matrices with verified meaning,
+and (pending validation, A-29) positions. Everything position-dependent (CLN assignment, boundary nodes, delay Figs 7-11)
+can therefore run at STATION level. Still impossible: a per-taxi graph (no taxi ids/positions anywhere in the public data).
+See docs/ROADMAP.md for the remaining steps.

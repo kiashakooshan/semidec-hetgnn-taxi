@@ -1,0 +1,47 @@
+{
+ "kernel_dis_bb": {
+  "nnz_pred": 19800,
+  "nnz_true": 19756,
+  "nnz_common": 19756,
+  "only_pred": 44,
+  "only_true": 0,
+  "dist_err_m_median": 1.4526515860626699,
+  "dist_err_m_p95": 2.158578415075718,
+  "dist_err_m_max": 2.2348255196111833,
+  "rowsum_max_abs_diff": 0.09851615893052923
+ },
+ "kernel_dis_tt": {
+  "nnz_pred": 19556,
+  "nnz_true": 19596,
+  "nnz_common": 19554,
+  "only_pred": 2,
+  "only_true": 42,
+  "dist_err_m_median": 1.129982522721118,
+  "dist_err_m_p95": 4.001220782884728,
+  "dist_err_m_max": 10.701682860191353,
+  "rowsum_max_abs_diff": 0.08456946026779022
+ },
+ "kernel_dis_tb": {
+  "nnz_pred": 18176,
+  "nnz_true": 18179,
+  "nnz_common": 18164,
+  "only_pred": 12,
+  "only_true": 15,
+  "dist_err_m_median": 1.4061960014110642,
+  "dist_err_m_p95": 4.203233057954287,
+  "dist_err_m_max": 9.3954668694321,
+  "rowsum_max_abs_diff": 0.07556268990424186
+ },
+ "geography": {
+  "inside_a_zone": 1.0,
+  "n_scored": 266,
+  "median_rank": 2.0,
+  "share_rank1": 0.424812030075188,
+  "share_rank_le3": 0.5939849624060151,
+  "share_rank_le10": 0.7894736842105263,
+  "chance_median_rank": 133.0
+ },
+ "stations_with_neighbour_within_100m": 2,
+ "stations_with_neighbour_within_200m": 159,
+ "stations_with_neighbour_within_500m": 256
+}
